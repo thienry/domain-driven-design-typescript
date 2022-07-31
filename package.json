@@ -4,9 +4,10 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
+    "tsc": "tsc",
+    "prepare": "husky install",
     "start": "npx tsc && node dist/main.js",
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "npm run tsc -- --noEmit && jest"
   },
   "keywords": [],
   "author": "",
