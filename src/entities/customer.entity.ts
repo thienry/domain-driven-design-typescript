@@ -1,17 +1,17 @@
-import { Address } from './address.entity';
+import { Address } from './address.entity'
 
 class Customer {
   constructor(
-    private id: string, 
-    private name: string, 
-    private address?: Address, 
+    private id: string,
+    private name: string,
+    private address?: Address,
     private isActive = false
   ) {
     if (this.address) {
       this.changeAddress(this.address)
     }
     this.validate()
-  } 
+  }
 
   validate() {
     if (!this.id) {
@@ -19,7 +19,7 @@ class Customer {
     }
     if (!this.name) {
       throw new Error('Customer name is required')
-    } 
+    }
   }
 
   getId() {

@@ -31,10 +31,10 @@ npm run test
 
 👤 **Thiago Moura <thmoura14@gmail.com>**
 
-* Website: http://thiagotec.com
-* Twitter: [@thienry](https://twitter.com/thienry)
-* Github: [@thienry](https://github.com/thienry)
-* LinkedIn: [@thiagotecdev](https://linkedin.com/in/thiagotecdev)
+- Website: http://thiagotec.com
+- Twitter: [@thienry](https://twitter.com/thienry14)
+- Github: [@thienry](https://github.com/thienry)
+- LinkedIn: [@thiagotecdev](https://linkedin.com/in/thiagotecdev)
 
 ## Show your support
 
