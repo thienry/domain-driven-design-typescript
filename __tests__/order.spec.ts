@@ -15,12 +15,19 @@ describe('Order unit tests', () => {
   })
 
   it('Should calculate total', () => {
-    const item1 = new OrderItem('123', '123', 10)
-    const item2 = new OrderItem('456', '456', 15)
+    const item1 = new OrderItem('123', 'Item 1', 10, 2, '123')
+    const item2 = new OrderItem('456', '456', 10, 2, '456')
     const order = new Order('123', 0, '123', [item1, item2])
 
     const total = order.total()
 
-    expect(total).toBe(25)
+    expect(total).toBe(40)
+  })
+
+  it('Should throws an error if qty is less or equal 0', () => {
+    expect(() => {
+      const item1 = new OrderItem('123', 'Item 1', 10, -1, '123')
+      new Order('123', 0, '123', [item1])
+    }).toThrowError('OrderItem quantity is required and must be greater than 0')
   })
 })
