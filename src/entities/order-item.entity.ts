@@ -1,8 +1,12 @@
 class OrderItem {
-  constructor(private id: string, private name: string, private price: number) {}
+  constructor(private _id: string, private _name: string, private _price: number) {}
+
+  get price() {
+    return this._price
+  }
 
   toString() {
-    return `${this.name} (${this.price})`
+    return `${this._name} (${this._price})`
   }
 }
 
