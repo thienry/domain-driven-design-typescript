@@ -2,45 +2,58 @@ import { Address } from './address.entity'
 
 class Customer {
   constructor(
-    private id: string,
-    private name: string,
-    private address?: Address,
-    private isActive = false
+    private _id: string,
+    private _name: string,
+    private _address?: Address,
+    private _isActive = false
   ) {
-    if (this.address) {
-      this.changeAddress(this.address)
+    if (this._address) {
+      this.changeAddress(this._address)
     }
     this.validate()
   }
 
   validate() {
-    if (!this.id) {
+    if (!this._id) {
       throw new Error('Customer ID is required')
     }
-    if (!this.name) {
+    if (!this._name) {
       throw new Error('Customer name is required')
     }
   }
 
-  getId() {
-    return this.id
+  get id() {
+    return this._id
+  }
+
+  get name() {
+    return this._name
+  }
+
+  get isActive() {
+    return this._isActive
+  }
+
+  get address() {
+    return this._address
   }
 
   changeName(name: string) {
-    this.name = name
+    this._name = name
+    this.validate()
   }
 
   activate() {
-    if (!this.address) throw new Error('Customer address is required')
-    this.isActive = true
+    if (!this._address) throw new Error('Customer address is required')
+    this._isActive = true
   }
 
   deactivate() {
-    this.isActive = false
+    this._isActive = false
   }
 
   changeAddress(address: Address) {
-    this.address = address
+    this._address = address
   }
 }
 

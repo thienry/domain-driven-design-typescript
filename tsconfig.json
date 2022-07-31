@@ -2,6 +2,7 @@
   "include": ["src/**/*.ts"],
   "compilerOptions": {
     "strict": true,
+    "target": "es5",
     "outDir": "./dist",
     "incremental": true,
     "module": "commonjs",
