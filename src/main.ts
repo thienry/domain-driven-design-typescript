@@ -1,7 +1,7 @@
-import { Order } from './entities/order.entity'
-import { Address } from './entities/address.entity'
-import { Customer } from './entities/customer.entity'
-import { OrderItem } from './entities/order-item.entity'
+import { Order } from './domain/entities/order.entity'
+import { Address } from './domain/entities/address.entity'
+import { Customer } from './domain/entities/customer.entity'
+import { OrderItem } from './domain/entities/order-item.entity'
 
 const customer = new Customer('123', 'John')
 const address = new Address('Street', 1, 'City', 'Zipcode')
