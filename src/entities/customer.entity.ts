@@ -5,7 +5,8 @@ class Customer {
     private _id: string,
     private _name: string,
     private _address?: Address,
-    private _isActive = false
+    private _isActive = false,
+    private _rewardPoints = 0
   ) {
     if (this._address) {
       this.changeAddress(this._address)
@@ -38,6 +39,10 @@ class Customer {
     return this._address
   }
 
+  get rewardPoints() {
+    return this._rewardPoints
+  }
+
   changeName(name: string) {
     this._name = name
     this.validate()
@@ -54,6 +59,10 @@ class Customer {
 
   changeAddress(address: Address) {
     this._address = address
+  }
+
+  addRewardPoints(points: number) {
+    this._rewardPoints += points
   }
 }
 

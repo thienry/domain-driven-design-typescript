@@ -1,5 +1,5 @@
-import { Address } from '../src/entities/address.entity'
-import { Customer } from '../src/entities/customer.entity'
+import { Address } from '../../src/entities/address.entity'
+import { Customer } from '../../src/entities/customer.entity'
 
 describe('Customer unit tests', () => {
   it('Should throws an error when ID is empty', () => {
