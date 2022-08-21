@@ -8,6 +8,9 @@
     "module": "commonjs",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "strictNullChecks": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true
   }
 }
