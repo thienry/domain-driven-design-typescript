@@ -1,12 +1,9 @@
 import { OrderItem } from './order-item.entity'
 
 class Order {
-  constructor(
-    private _id: string,
-    private _total: number,
-    private _customerId: string,
-    private _items: OrderItem[] = []
-  ) {
+  private _total: number
+
+  constructor(private _id: string, private _customerId: string, private _items: OrderItem[] = []) {
     this._total = this.total()
     this.validate()
   }
@@ -21,6 +18,18 @@ class Order {
     if (!this._items || this._items.length === 0) {
       throw new Error('Order must have at least one item')
     }
+  }
+
+  get id(): string {
+    return this._id
+  }
+
+  get customerId(): string {
+    return this._customerId
+  }
+
+  get items(): OrderItem[] {
+    return this._items
   }
 
   total(): number {

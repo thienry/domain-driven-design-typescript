@@ -7,8 +7,8 @@ describe('Order service unit tests', () => {
   it('should get total of all orders', () => {
     const orderItem1 = new OrderItem('1', 'Product 1', 10, 1, '10')
     const orderItem2 = new OrderItem('2', 'Product 2', 20, 2, '20')
-    const order1 = new Order('o1', 100, 'c1', [orderItem1])
-    const order2 = new Order('o2', 100, 'c1', [orderItem2])
+    const order1 = new Order('o1', 'c1', [orderItem1])
+    const order2 = new Order('o2', 'c1', [orderItem2])
 
     const total = OrderService.total([order1, order2])
 

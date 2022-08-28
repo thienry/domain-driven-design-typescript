@@ -9,6 +9,22 @@ class OrderItem {
     this.validate()
   }
 
+  get id() {
+    return this._id
+  }
+
+  get name() {
+    return this._name
+  }
+
+  get quantity() {
+    return this._quantity
+  }
+
+  get productId() {
+    return this._productId
+  }
+
   get price() {
     return this._price * this._quantity
   }
