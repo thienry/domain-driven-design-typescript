@@ -30,21 +30,21 @@ class OrderRepository implements IRepository<Order> {
    * @returns Promise<void>
    */
   async update(order: Order): Promise<void> {
-    await OrderModel.update(
-      {
-        id: order.id,
-        total: order.total(),
-        customer_id: order.customerId,
-        items: order.items.map((item) => ({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-          product_id: item.productId,
-        })),
-      },
-      { where: { id: order.id } }
-    )
+    const sequelize = OrderModel.sequelize
+    await sequelize.transaction(async (t) => {
+      await OrderItemModel.destroy({ where: { order_id: order.id }, transaction: t })
+      const items = order.items.map((item) => ({
+        id: item.id,
+        order_id: order.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        product_id: item.productId,
+      }))
+
+      await OrderItemModel.bulkCreate(items, { transaction: t })
+      await OrderModel.update({ total: order.total() }, { where: { id: order.id }, transaction: t })
+    })
   }
 
   /**
@@ -95,6 +95,8 @@ class OrderRepository implements IRepository<Order> {
       where: { id },
       include: ['items'],
     })
+
+    if (!orderModel) return null
 
     const orderItems = orderModel?.items.map(
       (item) => new OrderItem(item.id, item.name, item.price, item.quantity, item.product_id)

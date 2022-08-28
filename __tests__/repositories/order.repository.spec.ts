@@ -69,4 +69,123 @@ describe('Order repository unit test', () => {
       ],
     })
   })
+
+  it('should find all orders', async () => {
+    const customerRepo = new CustomerRepository()
+    const customer = new Customer('123', 'John Doe')
+    const address = new Address('Street', 123, 'City', '1234-5')
+
+    customer.changeAddress(address)
+    await customerRepo.create(customer)
+
+    const productRepo = new ProductRepository()
+    const product = new Product('123', 'Product', 100)
+    await productRepo.create(product)
+
+    const orderItem = new OrderItem('123', product.name, product.price, 1, product.id)
+    const order = new Order('123', customer.id, [orderItem])
+
+    const orderRepo = new OrderRepository()
+    await orderRepo.create(order)
+
+    const orders = await orderRepo.findAll()
+
+    expect(orders).toHaveLength(1)
+    expect([order]).toEqual(orders)
+  })
+
+  it('should find an order', async () => {
+    const customerRepo = new CustomerRepository()
+    const customer = new Customer('123', 'John Doe')
+    const address = new Address('Street', 123, 'City', '1234-5')
+
+    customer.changeAddress(address)
+    await customerRepo.create(customer)
+
+    const productRepo = new ProductRepository()
+    const product = new Product('123', 'Product', 100)
+    await productRepo.create(product)
+
+    const orderItem = new OrderItem('123', product.name, product.price, 1, product.id)
+    const newOrder = new Order('123', customer.id, [orderItem])
+
+    const orderRepo = new OrderRepository()
+    await orderRepo.create(newOrder)
+
+    const order = await orderRepo.findById(newOrder.id)
+
+    expect(newOrder).toStrictEqual(order)
+  })
+
+  it('should update an order', async () => {
+    const customerRepo = new CustomerRepository()
+    const customer = new Customer('123', 'John Doe')
+    const address = new Address('Street', 123, 'City', '1234-5')
+
+    customer.changeAddress(address)
+    await customerRepo.create(customer)
+
+    const productRepo = new ProductRepository()
+    const product = new Product('123', 'Product', 100)
+    await productRepo.create(product)
+
+    const orderItem = new OrderItem('123', product.name, product.price, 1, product.id)
+    const newOrder = new Order('123', customer.id, [orderItem])
+
+    const orderRepo = new OrderRepository()
+    await orderRepo.create(newOrder)
+
+    product.changeName('Updated product')
+    product.changePrice(200)
+
+    const newOrderItem = new OrderItem('1', product.name, product.price, 1, product.id)
+    newOrder.changeItems([newOrderItem])
+
+    await orderRepo.update(newOrder)
+
+    const order = await OrderModel.findOne({
+      where: { id: newOrder.id },
+      include: [{ model: OrderItemModel }],
+    })
+
+    expect(order?.toJSON()).toStrictEqual({
+      id: newOrder.id,
+      total: newOrder.total(),
+      customer_id: newOrder.customerId,
+      items: [
+        {
+          id: newOrderItem.id,
+          order_id: newOrder.id,
+          name: newOrderItem.name,
+          price: newOrderItem.price,
+          quantity: orderItem.quantity,
+          product_id: orderItem.productId,
+        },
+      ],
+    })
+  })
+
+  it('should delete an order', async () => {
+    const customerRepo = new CustomerRepository()
+    const customer = new Customer('123', 'John Doe')
+    const address = new Address('Street', 123, 'City', '1234-5')
+
+    customer.changeAddress(address)
+    await customerRepo.create(customer)
+
+    const productRepo = new ProductRepository()
+    const product = new Product('123', 'Product', 100)
+    await productRepo.create(product)
+
+    const orderItem = new OrderItem('123', product.name, product.price, 1, product.id)
+    const newOrder = new Order('123', customer.id, [orderItem])
+
+    const orderRepo = new OrderRepository()
+    await orderRepo.create(newOrder)
+
+    await orderRepo.delete(newOrder.id)
+    const order = await orderRepo.findById(newOrder.id)
+
+    expect(order).toBeNull()
+  })
 })

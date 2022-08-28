@@ -32,6 +32,10 @@ class Order {
     return this._items
   }
 
+  changeItems(items: OrderItem[]) {
+    this._items = items
+  }
+
   total(): number {
     return this._items.reduce((acc, item) => acc + item.price, 0)
   }
