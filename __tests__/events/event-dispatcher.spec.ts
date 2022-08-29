@@ -1,6 +1,6 @@
 import { EventDispatcher } from '../../src/domain/events/@shared/event-dispatcher'
 import { ProductCreatedEvent } from '../../src/domain/events/product/product-created.event'
-import { SendEmailProductCreatedHandler } from '../../src/domain/events/product/handler/send-email-product-created'
+import { SendEmailProductCreatedHandler } from '../../src/domain/events/product/handler/send-email-product-created.handler'
 
 describe('Domain events unit tests', () => {
   it('should register an event handler', () => {
@@ -14,7 +14,7 @@ describe('Domain events unit tests', () => {
     expect(eventDispatcher.eventHandlers['ProductCreatedEvent'].at(0)).toMatchObject(eventHandler)
   })
 
-  it('should unregister an event', () => {
+  it('should unregister an event handler', () => {
     const eventDispatcher = new EventDispatcher()
     const eventHandler = new SendEmailProductCreatedHandler()
 
