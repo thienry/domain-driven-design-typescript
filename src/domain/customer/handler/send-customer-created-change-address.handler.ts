@@ -1,5 +1,5 @@
 import { CustomerCreatedEvent } from '../customer-created.event'
-import { IEventHandler } from '../../@shared/event-handler.interface'
+import { IEventHandler } from '../../@shared/events/event-handler.interface'
 import { ChangeCustomerAddressEvent } from '../change-customer-address.event'
 
 class SendChangeCustomerAddressHandler implements IEventHandler<ChangeCustomerAddressEvent> {

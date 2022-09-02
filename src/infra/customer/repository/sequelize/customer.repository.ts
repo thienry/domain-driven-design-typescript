@@ -1,7 +1,7 @@
-import { Address } from '../../domain/entities/address.entity'
-import { Customer } from '../../domain/entities/customer.entity'
-import { CustomerModel } from '../database/sequelize/models/customer.model'
-import { ICustomerRepository } from '../../domain/repositories/customer-repository.interface'
+import { Address } from '../../../../domain/customer/address.entity'
+import { Customer } from '../../../../domain/customer/customer.entity'
+import { CustomerModel } from './customer.model'
+import { ICustomerRepository } from '../../../../domain/customer/customer-repository.interface'
 
 class CustomerRepository implements ICustomerRepository {
   /**

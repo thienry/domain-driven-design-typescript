@@ -1,6 +1,6 @@
-import { EventDispatcher } from '../../src/domain/events/@shared/event-dispatcher'
-import { ProductCreatedEvent } from '../../src/domain/events/product/product-created.event'
-import { SendEmailProductCreatedHandler } from '../../src/domain/events/product/handler/send-email-product-created.handler'
+import { EventDispatcher } from '../../src/domain/@shared/events/event-dispatcher'
+import { ProductCreatedEvent } from '../../src/domain/product/product-created.event'
+import { SendEmailProductCreatedHandler } from '../../src/domain/product/handler/send-email-product-created.handler'
 
 describe('Domain events unit tests', () => {
   it('should register an event handler', () => {

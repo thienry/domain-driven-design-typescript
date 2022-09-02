@@ -1,6 +1,6 @@
-import { Product } from '../../domain/entities/product.entity'
-import { ProductModel } from '../database/sequelize/models/product.model'
-import { IProductRepository } from '../../domain/repositories/product-repository.interface'
+import { Product } from '../../../../domain/product/product.entity'
+import { ProductModel } from '../../../product/repository/sequelize/product.model'
+import { IProductRepository } from '../../../../domain/product/product.repository.interface'
 
 class ProductRepository implements IProductRepository {
   /**

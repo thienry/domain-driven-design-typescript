@@ -1,8 +1,8 @@
-import { Address } from '../../src/domain/entities/address.entity'
-import { Customer } from '../../src/domain/entities/customer.entity'
-import { EventDispatcher } from '../../src/domain/events/@shared/event-dispatcher'
-import { ChangeCustomerAddressEvent } from '../../src/domain/events/customer/change-customer-address.event'
-import { SendChangeCustomerAddressHandler } from '../../src/domain/events/customer/handler/send-customer-created-change-address.handler'
+import { Address } from '../../src/domain/customer/address.entity'
+import { Customer } from '../../src/domain/customer/customer.entity'
+import { EventDispatcher } from '../../src/domain/@shared/events/event-dispatcher'
+import { ChangeCustomerAddressEvent } from '../../src/domain/customer/change-customer-address.event'
+import { SendChangeCustomerAddressHandler } from '../../src/domain/customer/handler/send-customer-created-change-address.handler'
 
 describe('Change customer address event unit tests', () => {
   let customerAddress: Address

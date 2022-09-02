@@ -1,19 +1,19 @@
 import { Sequelize } from 'sequelize-typescript'
 
-import { Order } from '../../src/domain/entities/order.entity'
-import { Address } from '../../src/domain/entities/address.entity'
-import { Product } from '../../src/domain/entities/product.entity'
-import { Customer } from '../../src/domain/entities/customer.entity'
-import { OrderItem } from '../../src/domain/entities/order-item.entity'
+import { Order } from '../../src/domain/checkout/order.entity'
+import { Product } from '../../src/domain/product/product.entity'
+import { Address } from '../../src/domain/customer/address.entity'
+import { Customer } from '../../src/domain/customer/customer.entity'
+import { OrderItem } from '../../src/domain/checkout/order-item.entity'
 
-import { OrderRepository } from '../../src/infra/repositories/order.repository'
-import { ProductRepository } from '../../src/infra/repositories/product.repository'
-import { CustomerRepository } from '../../src/infra/repositories/customer.repository'
+import { OrderRepository } from '../../src/infra/checkout/repository/sequelize/order.repository'
+import { ProductRepository } from '../../src/infra/product/repository/sequelize/product.repository'
+import { CustomerRepository } from '../../src/infra/customer/repository/sequelize/customer.repository'
 
-import { OrderModel } from '../../src/infra/database/sequelize/models/order.model'
-import { ProductModel } from '../../src/infra/database/sequelize/models/product.model'
-import { CustomerModel } from '../../src/infra/database/sequelize/models/customer.model'
-import { OrderItemModel } from '../../src/infra/database/sequelize/models/order-item.model'
+import { OrderModel } from '../../src/infra/checkout/repository/sequelize/order.model'
+import { ProductModel } from '../../src/infra/product/repository/sequelize/product.model'
+import { CustomerModel } from '../../src/infra/customer/repository/sequelize/customer.model'
+import { OrderItemModel } from '../../src/infra/checkout/repository/sequelize/order-item.model'
 
 describe('Order repository unit test', () => {
   let sequelize: Sequelize

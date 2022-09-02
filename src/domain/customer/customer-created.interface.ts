@@ -1,4 +1,4 @@
-import { Address } from '../../entities/address.entity'
+import { Address } from '../customer/address.entity'
 
 interface ICustomerCreated {
   id: string

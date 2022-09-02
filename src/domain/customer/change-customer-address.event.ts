@@ -1,4 +1,4 @@
-import { IEvent } from '../@shared/event.interface'
+import { IEvent } from '../@shared/events/event.interface'
 // import { ICustomerCreated } from './customer-created.interface'
 
 class ChangeCustomerAddressEvent implements IEvent {

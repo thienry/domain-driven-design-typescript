@@ -1,4 +1,4 @@
-import { IEvent } from '../@shared/event.interface'
+import { IEvent } from '../@shared/events/event.interface'
 import { IProductCreated } from './product-created.interface'
 
 class ProductCreatedEvent implements IEvent {

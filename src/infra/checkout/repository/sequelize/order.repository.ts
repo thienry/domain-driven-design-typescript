@@ -1,8 +1,8 @@
-import { Order } from '../../domain/entities/order.entity'
-import { OrderItem } from '../../domain/entities/order-item.entity'
-import { OrderModel } from '../database/sequelize/models/order.model'
-import { IRepository } from '../../domain/repositories/repository.interface'
-import { OrderItemModel } from '../database/sequelize/models/order-item.model'
+import { OrderModel } from './order.model'
+import { OrderItemModel } from './order-item.model'
+import { Order } from '../../../../domain/checkout/order.entity'
+import { OrderItem } from '../../../../domain/checkout/order-item.entity'
+import { IRepository } from '../../../../domain/@shared/repository/repository.interface'
 
 class OrderRepository implements IRepository<Order> {
   /**

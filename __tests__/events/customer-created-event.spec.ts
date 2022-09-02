@@ -1,9 +1,9 @@
-import { Address } from '../../src/domain/entities/address.entity'
-import { Customer } from '../../src/domain/entities/customer.entity'
-import { EventDispatcher } from '../../src/domain/events/@shared/event-dispatcher'
-import { CustomerCreatedEvent } from '../../src/domain/events/customer/customer-created.event'
-import { SendFirstCustomerCreatedHandler } from '../../src/domain/events/customer/handler/send-first-customer-created.handler'
-import { SendSecondCustomerCreatedHandler } from '../../src/domain/events/customer/handler/send-second-customer-created.handler'
+import { Address } from '../../src/domain/customer/address.entity'
+import { Customer } from '../../src/domain/customer/customer.entity'
+import { EventDispatcher } from '../../src/domain/@shared/events/event-dispatcher'
+import { CustomerCreatedEvent } from '../../src/domain/customer/customer-created.event'
+import { SendFirstCustomerCreatedHandler } from '../../src/domain/customer/handler/send-first-customer-created.handler'
+import { SendSecondCustomerCreatedHandler } from '../../src/domain/customer/handler/send-second-customer-created.handler'
 
 describe('Change customer address event unit tests', () => {
   let eventName: string
