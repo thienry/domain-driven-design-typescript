@@ -1,4 +1,6 @@
-class Product {
+import { IProduct } from './product.interface'
+
+class Product implements IProduct {
   constructor(private _id: string, private _name: string, private _price: number) {
     this.validate()
   }
