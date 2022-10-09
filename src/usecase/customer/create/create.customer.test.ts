@@ -36,4 +36,22 @@ describe('Unit tests create customer use case', () => {
       },
     })
   })
+
+  it('should throws when name is missing', async () => {
+    const customerRepo = MockRepo()
+    const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
+
+    input.name = ''
+
+    expect(createCustomerUseCase.execute(input)).rejects.toThrowError()
+  })
+
+  it('should throws when street address is missing', async () => {
+    const customerRepo = MockRepo()
+    const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
+
+    input.address.street = ''
+
+    expect(createCustomerUseCase.execute(input)).rejects.toThrowError()
+  })
 })
