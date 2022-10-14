@@ -1,5 +1,4 @@
 import { CreateCustomerUseCase } from './create.customer.usecase'
-import { ICustomerRepository } from '../../../domain/customer/customer-repository.interface'
 
 const input = {
   name: 'John Doe',
@@ -11,13 +10,13 @@ const input = {
   },
 }
 
-const MockRepo = () =>
-  ({
-    create: jest.fn(),
-    update: jest.fn(),
-    findAll: jest.fn(),
-    findById: jest.fn(),
-  } as unknown as ICustomerRepository)
+const MockRepo = () => ({
+  create: jest.fn(),
+  delete: jest.fn(),
+  update: jest.fn(),
+  findAll: jest.fn(),
+  findById: jest.fn(),
+})
 
 describe('Unit tests create customer use case', () => {
   it('should create a customer', async () => {

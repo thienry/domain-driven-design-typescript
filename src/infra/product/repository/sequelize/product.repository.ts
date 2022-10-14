@@ -18,13 +18,7 @@ class ProductRepository implements IProductRepository {
    * @returns Promise<Product>
    */
   async update(item: Product): Promise<void> {
-    await ProductModel.update(
-      {
-        name: item.name,
-        price: item.price,
-      },
-      { where: { id: item.id } }
-    )
+    await ProductModel.update({ name: item.name, price: item.price }, { where: { id: item.id } })
   }
 
   /**
@@ -42,11 +36,7 @@ class ProductRepository implements IProductRepository {
    * @returns Promise<void>
    */
   async create(product: Product): Promise<void> {
-    await ProductModel.create({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-    })
+    await ProductModel.create({ id: product.id, name: product.name, price: product.price })
   }
 
   /**
@@ -54,9 +44,11 @@ class ProductRepository implements IProductRepository {
    * @param id Product id
    * @returns Promise<Product>
    */
-  async findById(id: string): Promise<Product | undefined> {
-    const product = await ProductModel.findOne({ where: { id } })
-    return product ? product.toJSON() : undefined
+  async findById(id: string): Promise<Product> {
+    const productModel = await ProductModel.findOne({ where: { id } })
+    if (!productModel) return undefined
+    const product = new Product(id, productModel.name, productModel.price)
+    return product
   }
 }
 

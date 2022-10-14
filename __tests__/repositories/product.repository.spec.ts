@@ -90,10 +90,6 @@ describe('Product repository unit tests', () => {
     const productFound = await productRepository.findById('1')
 
     expect(productFound).toBeDefined()
-    expect(productFound).toEqual({
-      id: '1',
-      name: 'Product 1',
-      price: 100,
-    })
+    expect(productFound).toEqual(product)
   })
 })
