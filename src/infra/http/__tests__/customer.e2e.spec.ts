@@ -5,7 +5,7 @@ import { app, sequelize } from '../express'
 describe('E2E tests for customer', () => {
   beforeEach(async () => sequelize.sync({ force: true }))
 
-  afterEach(async () => sequelize.close())
+  afterAll(async () => sequelize.close())
 
   it('should create a customer', async () => {
     const inputBody = {
@@ -20,5 +20,10 @@ describe('E2E tests for customer', () => {
     expect(response.body.address.number).toBe(inputBody.address.number)
     expect(response.body.address.street).toBe(inputBody.address.street)
     expect(response.body.address.zipcode).toBe(inputBody.address.zipcode)
+  })
+
+  it('should not create a customer', async () => {
+    const response = await request(app).post('/customers').send({ name: 'John Doe' })
+    expect(response.status).toBe(500)
   })
 })
