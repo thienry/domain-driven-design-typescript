@@ -3,11 +3,17 @@ import { Customer } from '../../src/domain/customer/customer.entity'
 
 describe('Customer unit tests', () => {
   it('Should throws an error when ID is empty', () => {
-    expect(() => new Customer('', 'Thiago')).toThrowError('Customer ID is required')
+    expect(() => new Customer('', 'Thiago')).toThrowError('customer: ID is required!')
   })
 
   it('Should throws an error when name is empty', () => {
-    expect(() => new Customer('123', '')).toThrowError('Customer name is required')
+    expect(() => new Customer('123', '')).toThrowError('customer: Name is required!')
+  })
+
+  it('Should throws an error when ID and name are empties', () => {
+    expect(() => new Customer('', '')).toThrowError(
+      'customer: ID is required!,customer: Name is required!'
+    )
   })
 
   it('Should change name', () => {

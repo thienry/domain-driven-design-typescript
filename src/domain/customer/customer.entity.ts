@@ -1,30 +1,36 @@
 import { Address } from './address.entity'
+import { Entity } from '../@shared/entity/entity.abstract'
+import { NotificationError } from '../@shared/notification/notification.error'
 
-class Customer {
-  constructor(
-    private _id: string,
-    private _name: string,
-    private _address?: Address,
-    private _isActive = false,
-    private _rewardPoints = 0
-  ) {
+class Customer extends Entity {
+  private _name = ''
+  private _isActive = false
+  private _rewardPoints = 0
+  private _address?: Address
+
+  constructor(id: string, name: string) {
+    super()
+
+    this._id = id
+    this._name = name
+
     if (this._address) {
       this.changeAddress(this._address)
     }
+
     this.validate()
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.errors)
+    }
   }
 
   validate() {
-    if (!this._id) {
-      throw new Error('Customer ID is required')
+    if (!this.id) {
+      this.notification.addError({ context: 'customer', message: 'ID is required!' })
     }
     if (!this._name) {
-      throw new Error('Customer name is required')
+      this.notification.addError({ context: 'customer', message: 'Name is required!' })
     }
-  }
-
-  get id() {
-    return this._id
   }
 
   get name() {
