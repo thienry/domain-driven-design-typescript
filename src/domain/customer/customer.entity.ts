@@ -1,5 +1,6 @@
 import { Address } from './address.entity'
 import { Entity } from '../@shared/entity/entity.abstract'
+import { CustomerValidatorFactory } from './customer.validator.factory'
 import { NotificationError } from '../@shared/notification/notification.error'
 
 class Customer extends Entity {
@@ -24,13 +25,8 @@ class Customer extends Entity {
     }
   }
 
-  validate() {
-    if (!this.id) {
-      this.notification.addError({ context: 'customer', message: 'ID is required!' })
-    }
-    if (!this._name) {
-      this.notification.addError({ context: 'customer', message: 'Name is required!' })
-    }
+  validate(): void {
+    CustomerValidatorFactory.create().validate(this)
   }
 
   get name() {
