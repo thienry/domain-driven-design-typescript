@@ -70,6 +70,6 @@ describe('Customer unit tests', () => {
     expect(() => {
       const customer = new Customer('123', 'Thiago')
       customer.activate()
-    }).toThrowError('Customer address is required')
+    }).toThrowError('customer: Customer address is required!')
   })
 })
