@@ -27,7 +27,7 @@ describe('E2E tests for customer', () => {
     expect(response.status).toBe(500)
   })
 
-  it('should not create a customer', async () => {
+  it('should list all customer', async () => {
     const inputBody1 = {
       name: 'John Doe',
       address: { street: 'Street', city: 'City', number: 1234, zipcode: '123456' },
@@ -58,5 +58,27 @@ describe('E2E tests for customer', () => {
     expect(customer2.address.number).toBe(inputBody2.address.number)
     expect(customer2.address.street).toBe(inputBody2.address.street)
     expect(customer2.address.zipcode).toBe(inputBody2.address.zipcode)
+  })
+
+  it('should list all costumers in xml response', async () => {
+    const inputBody1 = {
+      name: 'John Doe',
+      address: { street: 'Street', city: 'City', number: 1234, zipcode: '123456' },
+    }
+    const inputBody2 = {
+      name: 'Jane Doe',
+      address: { street: 'Street2', city: 'City2', number: 1234, zipcode: '1234562' },
+    }
+
+    await request(app).post('/customers').send(inputBody1)
+    await request(app).post('/customers').send(inputBody2)
+
+    const listResponseXML = await request(app)
+      .get('/customers')
+      .set('Accept', 'application/xml')
+      .send()
+
+    expect(listResponseXML.status).toBe(200)
+    expect(listResponseXML.text).toContain('<?xml version="1.0" encoding="UTF-8"?>')
   })
 })
